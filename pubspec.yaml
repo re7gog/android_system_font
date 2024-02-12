@@ -1,6 +1,6 @@
 name: android_system_font
 description: "Flutter plugin for getting the Android system font."
-version: 0.0.1
+version: 1.0.0
 homepage:
 
 environment:
