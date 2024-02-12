@@ -9,7 +9,7 @@ class MockAndroidSystemFontPlatform
     implements AndroidSystemFontPlatform {
 
   @override
-  Future<String?> getPlatformVersion() => Future.value('42');
+  Future<String?> getFilePath() => Future.value('/system/fonts/Roboto-Regular.ttf');
 }
 
 void main() {
@@ -19,11 +19,11 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelAndroidSystemFont>());
   });
 
-  test('getPlatformVersion', () async {
+  test('getFilePath', () async {
     AndroidSystemFont androidSystemFontPlugin = AndroidSystemFont();
     MockAndroidSystemFontPlatform fakePlatform = MockAndroidSystemFontPlatform();
     AndroidSystemFontPlatform.instance = fakePlatform;
 
-    expect(await androidSystemFontPlugin.getPlatformVersion(), '42');
+    expect(await androidSystemFontPlugin.getFilePath(), '/system/fonts/Roboto-Regular.ttf');
   });
 }
