@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -25,6 +27,11 @@ class _MyAppState extends State<MyApp> {
     initPlatformState();
   }
 
+  static Future<ByteData> _readFileBytes(String path) async {
+    var bytes = await File(path).readAsBytes();
+    return ByteData.view(bytes.buffer);
+  }
+
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     String fontFilePath;
@@ -44,12 +51,18 @@ class _MyAppState extends State<MyApp> {
 
     setState(() {
       _fontFilePath = fontFilePath;
+      var fontLoader = FontLoader('SystemFont');
+      fontLoader.addFont(_readFileBytes(fontFilePath));
+      fontLoader.load();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: "SystemFont"
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Plugin example app'),
