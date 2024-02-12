@@ -10,8 +10,8 @@ class MethodChannelAndroidSystemFont extends AndroidSystemFontPlatform {
   final methodChannel = const MethodChannel('android_system_font');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<String?> getFilePath() async {
+    final filePath = await methodChannel.invokeMethod<String>('getFilePath');
+    return filePath;
   }
 }

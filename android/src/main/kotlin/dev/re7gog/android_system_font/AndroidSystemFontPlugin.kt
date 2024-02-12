@@ -22,7 +22,7 @@ class AndroidSystemFontPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    if (call.method == "getSystemFontPath") {
+    if (call.method == "getFilePath") {
       result.success(SystemFont().getFilePath())
     } else {
       result.notImplemented()

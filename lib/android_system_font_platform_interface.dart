@@ -23,7 +23,7 @@ abstract class AndroidSystemFontPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<String?> getFilePath() {
+    throw UnimplementedError('getFilePath() has not been implemented.');
   }
 }

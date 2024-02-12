@@ -15,11 +15,14 @@ import 'package:android_system_font/android_system_font.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('getPlatformVersion test', (WidgetTester tester) async {
+  testWidgets('getFilePath test', (WidgetTester tester) async {
     final AndroidSystemFont plugin = AndroidSystemFont();
-    final String? version = await plugin.getPlatformVersion();
+    final String? filePath = await plugin.getFilePath();
     // The version string depends on the host platform running the test, so
     // just assert that some non-empty string is returned.
-    expect(version?.isNotEmpty, true);
+    expect(filePath?.isNotEmpty, true);
+    final bool isPath = filePath!.startsWith("/system/fonts/") ||
+        filePath.startsWith("/product/fonts/");
+    expect(isPath, true);
   });
 }
