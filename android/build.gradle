@@ -1,18 +1,23 @@
-group 'dev.re7gog.android_system_font'
-version '1.0-SNAPSHOT'
-
 buildscript {
-    ext.kotlin_version = '1.7.10'
+    ext.kotlin_version = "2.2.20"
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath("com.android.tools.build:gradle:8.11.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
+
+plugins {
+    id('com.android.library')
+    id('kotlin-android')
+}
+
+group = "dev.re7gog.android_system_font"
+version = "1.1.0"
 
 allprojects {
     repositories {
@@ -21,48 +26,30 @@ allprojects {
     }
 }
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-
 android {
-    if (project.android.hasProperty("namespace")) {
-        namespace 'dev.re7gog.android_system_font'
-    }
+    namespace = "dev.re7gog.android_system_font"
 
-    compileSdkVersion 34
+    compileSdk = 36
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_17
     }
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-        test.java.srcDirs += 'src/test/kotlin'
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
     }
 
     defaultConfig {
-        minSdkVersion 24
+        minSdk = 24
     }
 
     dependencies {
-        testImplementation 'org.jetbrains.kotlin:kotlin-test'
-        testImplementation 'org.mockito:mockito-core:5.0.0'
-    }
 
-    testOptions {
-        unitTests.all {
-            useJUnitPlatform()
-
-            testLogging {
-               events "passed", "skipped", "failed", "standardOut", "standardError"
-               outputs.upToDateWhen {false}
-               showStandardStreams = true
-            }
-        }
     }
 }

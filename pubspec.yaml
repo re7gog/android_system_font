@@ -1,10 +1,10 @@
 name: android_system_font
 description: "Flutter plugin for getting the Android system font."
-version: 1.0.0
+version: 1.1.0
 homepage: https://github.com/re7gog/android_system_font
 
 environment:
-  sdk: '>=3.2.3 <4.0.0'
+  sdk: ^3.10.0
   flutter: '>=3.3.0'
 
 dependencies:
@@ -15,7 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
