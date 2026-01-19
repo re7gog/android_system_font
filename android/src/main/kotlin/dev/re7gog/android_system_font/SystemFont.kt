@@ -9,6 +9,8 @@ import kotlin.math.abs
 class SystemFont {
     fun getFilePath(): String {
         val fallback = "/system/fonts/Roboto-Regular.ttf"
+        val blacklist = "/system/fonts/DroidSansMono.ttf"
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return fallback
 
         val systemMetrics = Paint().apply {
@@ -23,8 +25,10 @@ class SystemFont {
                 textSize = 100f
             }.fontMetrics
 
-            if (isMetricsMatch(systemMetrics, testMetrics))
-                return it.file?.absolutePath ?: fallback
+            val fontPath = it.file?.absolutePath ?: fallback
+            if (isMetricsMatch(systemMetrics, testMetrics) &&
+                fontPath != fallback && fontPath != blacklist)
+                return fontPath
         }
         return fallback
     }
